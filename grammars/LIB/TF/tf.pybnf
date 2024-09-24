@@ -1,0 +1,8 @@
+<start> ::= <expr1>
+<expr1> ::= <expr2><op><expr2>|(<expr2><op><expr2>)|<pre_op>(<expr2>)| (<expr2>)**<value> | <value>
+<expr2> ::= <expr3><op><expr3>|(<expr3><op><expr3>)|<pre_op>(<expr3>)| (<expr3>)**<value> |<value>
+<expr3> ::= <value><op><value>|(<value><op><value>)|<pre_op>(<value>) |<value>
+<op> ::= +|-|*| /
+<pre_op> ::= _exp_ | _log_
+<value> ::= <variable> | Constant
+<variable> ::= x[0]

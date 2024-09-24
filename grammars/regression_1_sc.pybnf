@@ -1,0 +1,6 @@
+<start> ::= <expr>
+<expr> ::= <expr><op><expr>|(<expr><op><expr>)|<pre_op>(<expr>)|<value>
+<op> ::= +|-|*|\eb_div_\eb
+<pre_op> ::= sin|cos|_exp_|_log_|_inv_
+<value> ::= <variable> | Constant
+<variable> ::= x[0]

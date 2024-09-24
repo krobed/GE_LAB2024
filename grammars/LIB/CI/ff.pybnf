@@ -1,0 +1,8 @@
+<start> ::= <expr1>
+<expr1> ::= <expr2><op><expr2>|(<expr2><op><expr2>)| (<expr2>**Constant)|<value>
+<expr2> ::= <expr3><op><expr3>|(<expr3><op><expr3>)| (<expr3>**Constant)|<value>
+<expr3> ::= <expr4><op><expr4>|(<expr4><op><expr4>)| (<expr4>**Constant)|<value>
+<expr4> ::= <value><op><value>|(<value><op><value>)|<value>
+<op> ::= +|-|*|/
+<value> ::= <variable> | Constant
+<variable> ::= x[0]|x[1]
