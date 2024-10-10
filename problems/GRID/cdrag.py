@@ -54,7 +54,7 @@ class SymbolicRegression():
         return result
 
 
-    def evaluate(self, individual):
+    def evaluate(self, individual):cd 
         if individual is None:
             return self.__invalid_fitness
         fitness_train = self.get_error_time(individual, self.Y, self.X)

@@ -1,6 +1,6 @@
 POPSIZE: 100
 GENERATIONS: 200
-ELITISM: 10                         # number of individuals that survive
+ELITISM: 20                         # number of individuals that survive
 PROB_CROSSOVER: 0.8
 PROB_MUTATION: 0.1
 TSIZE: 3
@@ -14,7 +14,7 @@ MIN_TREE_DEPTH: 0
 MAX_TREE_DEPTH: 10
 ALGORITHM: 'SGE'
 OPTIMIZE: True
-OPTIMIZE_EACH: 50
+OPTIMIZE_EACH: 20
 EASY_START: True
 ALL_VALID: True
 CACHE: True  
