@@ -1,4 +1,4 @@
-<start> ::= <expr1>
+<start> ::= <expr1> + Constant*x[0]**Constant + Constant*x[1]**Constant
 <expr1> ::= <expr2><op><expr2>|(<expr2><op><expr2>)| (<expr2>**Constant)|<value>
 <expr2> ::= <expr3><op><expr3>|(<expr3><op><expr3>)| (<expr3>**Constant)|<value>
 <expr3> ::= <expr4><op><expr4>|(<expr4><op><expr4>)| (<expr4>**Constant)|<value>

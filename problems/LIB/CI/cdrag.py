@@ -6,7 +6,7 @@ import sge
 import argparse
 import pandas as pd
 import numpy as np
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import root_mean_squared_error
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -34,7 +34,7 @@ class SymbolicRegression():
     def get_error(self, individual, Y_train, dataset):
         try:
             Y_pred = list(map(lambda x: eval(individual), dataset))
-            error = mean_squared_error(Y_train,Y_pred, squared=False)
+            error = root_mean_squared_error(Y_train,Y_pred)
         except Exception as e: 
             error= self.__invalid_fitness
         if error==None:
@@ -48,10 +48,18 @@ class SymbolicRegression():
         error_53 = self.get_error(individual, self.Y_53, self.X_53)
         error_74 = self.get_error(individual, self.Y_74, self.X_74)
         error_102 = self.get_error(individual, self.Y_102, self.X_102)
-        fitness_train = np.mean([error_25,error_53,error_74])
-        fitness_val = error_102
+        fitness_train = np.mean([error_25,error_53,error_102])
+        fitness_val = error_74
         return fitness_train,fitness_val, {'fitness 25': error_25, 'fitness 53': error_53,'fitness 74': error_74,'fitness 102': error_102}
 
+    def fit_train(self, individual):
+        if individual is None:
+            return self.__invalid_fitness
+        error_25 = self.get_error(individual, self.Y_25, self.X_25)
+        error_53 = self.get_error(individual, self.Y_53, self.X_53)
+        error_102 = self.get_error(individual, self.Y_102, self.X_102)
+        return np.mean([error_25,error_53,error_102])
+    
 if __name__ == "__main__":
     import sge
     eval_func = SymbolicRegression()

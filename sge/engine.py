@@ -145,7 +145,7 @@ def Get_phenotype(phenotype, old_constants, fitness_function, OPTIMIZE):
         if OPTIMIZE:
             try:
                 fun = lambda x: eval_ind(x)
-                res = minimize(fun, old_constants, method='SLSQP',jac=False)
+                res = minimize(fun, old_constants, method='COBYQA',jac=False)
                 opt_const = res['x']
             except:
                 opt_const = old_constants
@@ -178,17 +178,20 @@ def evolutionary_algorithm(evaluation_function=None, parameters_file=None):
     #sys.stdout.write("\r INICIALIZANDO                                             ")
     setup(parameters_file_path=parameters_file)
     population = list(make_initial_population())
+    population.append({'genotype': [[0],[0],[2,0],[3,2,2,3],[1,2,1],[3,2,0,0,0,3,2,1],[1,1,0,0,1,1,1],[1,0,0]],'fitness':None, 'tree_depth' : 7})
+    # population.append({'genotype': [[0],[0],[0,2],[3,2,3],[2,2],[2,2],[1,0,0],[1,0]],'fitness':None, 'tree_depth' : 7})
+    # population.append({'genotype': [[0],[0],[3,2],[2],[2],[1,0],[0]],'fitness':None, 'tree_depth' : 6})
     it = 0
     best_overall = {}
     flag = False
     while it <= params['GENERATIONS']:
         #print('########### Generation ' + str(it) + ' ########')
         #sys.stdout.write("\r Generation " + str(it) + '                                 ') 
-        if params['CACHE'] and it%params['CLEAN_CACHE_EACH']==0 and it!=0:
+        if params['CACHE'] and it%params['CLEAN_CACHE_EACH']==0:
             cache = {}
         for i in range(len((population))):
             #sys.stdout.write("\r Generation " + str(it) + ': evaluando individuo ' +  str(i) + '                   ') 
-            if params['OPTIMIZE'] and it%params['OPTIMIZE_EACH'] == 0 and it!=0:
+            if params['OPTIMIZE'] and it%params['OPTIMIZE_EACH'] == 0 :
                 population[i] = evaluate(population[i], evaluation_function,OPTIMIZE=True)
             else:
                 population[i] = evaluate(population[i], evaluation_function,OPTIMIZE=False)
